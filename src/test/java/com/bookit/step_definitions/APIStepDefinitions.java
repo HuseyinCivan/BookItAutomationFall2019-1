@@ -77,6 +77,7 @@ public class APIStepDefinitions {
     @When("user sends POST request to {string} with following information:")
     public void user_sends_POST_request_to_with_following_information(String path, List<Map<String, String>> dataTable) {
         for(Map<String, ?> user: dataTable) {
+            System.out.println("user to add "+user);
             response = given().queryParams(user).contentType(contentType).auth().oauth2(token).when().post(path).prettyPeek();
         }
     }
@@ -95,4 +96,6 @@ public class APIStepDefinitions {
             response.then().statusCode(204);
         }
     }
+
+
 }
